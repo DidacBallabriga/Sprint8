@@ -20,8 +20,8 @@
         </b-collapse>
     </b-navbar>
       <div class="container-fluid d-flex justify-content-center align-content-center div-nuxt-link">
-        <NuxtLink class="nuxt-link-1 p-2" to="/home">HOME</NuxtLink>
-        <NuxtLink class="nuxt-link-2 p-2" to="/starships">STARSHIPS</NuxtLink>
+        <NuxtLink active-class="active" class="nuxt-link-1 p-2" to="/home">HOME</NuxtLink>
+        <NuxtLink active-class="active" class="nuxt-link-2 p-2" to="/starships">STARSHIPS</NuxtLink>
       </div>  
   </div>
 </template>
@@ -63,6 +63,7 @@ a, span{
     background-color: #ffffff;
 }
 .div-nuxt-link{
+  font-size: 1.2rem;
   border-top: 1px solid rgb(143, 140, 140);
   border-bottom: 1px solid rgb(143, 140, 140);
 }
@@ -70,12 +71,26 @@ a, span{
   border-left: 1px solid rgb(143, 140, 140);
   border-right: 1px solid rgb(143, 140, 140);
 }
+.nuxt-link-1:hover{
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue, 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue, 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue,1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue,1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue,1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+.nuxt-link-2:hover{
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue, 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue, 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue,1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue,1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue,1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
 .nuxt-link-2{
   border-right: 1px solid rgb(143, 140, 140);
 }
 .myclass{
   width: 155px;
 }
+.active{
+   border-bottom: 2px solid blue;
+   cursor: pointer;
+ }
 
 
 </style>
