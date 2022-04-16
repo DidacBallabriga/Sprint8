@@ -3,13 +3,13 @@
     <b-navbar id="navbar" toggleable="md">
       <div class="myclass"></div>
         <b-navbar-brand class="d-md-none">
-          <Logo />
+          <Logo src="/" />
         </b-navbar-brand>
       <b-navbar-toggle target="collapse-area"></b-navbar-toggle>
         <b-collapse id="collapse-area" is-nav>
           <b-navbar-nav class="d-none d-md-block mx-auto">
             <b-nav-text>
-              <Logo />
+              <Logo href="/" />
             </b-nav-text>
           </b-navbar-nav>
           <b-navbar-nav>
@@ -19,10 +19,7 @@
           </b-navbar-nav>
         </b-collapse>
     </b-navbar>
-      <div class="container-fluid d-flex justify-content-center align-content-center div-nuxt-link">
-        <NuxtLink active-class="active" class="nuxt-link-1 p-3" to="/home">HOME</NuxtLink>
-        <NuxtLink active-class="active" class="nuxt-link-2 p-3" to="/starships">STARSHIPS</NuxtLink>
-      </div>  
+
   </div>
 </template>
 
@@ -46,7 +43,11 @@ export default {
     font-weight: 500;
 }
 a, span{
-  color: rgb(143, 140, 140);
+  color: #999;
+}
+a:hover{
+  color: #ccc;
+  text-decoration: none;
 }
 @media (max-width: 767px){
   .double-bar{
