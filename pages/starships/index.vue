@@ -1,29 +1,44 @@
 <template>
   <div class="container-fluid cont-ships">
-    
-    <div class="ship-render" v-for="(ship, index) in ships.results" :key="index" :id="ship.name">
+    <div class="ship-render" v-for="(ship, index) in ships" :key="index" :id="ship.name">
       <nuxt-link :to="'/starships/' + ship.name">
         <p class="name-ship">{{ship.name}}</p>
         <p>{{ship.model}}</p>
       </nuxt-link>
     </div>
-     
+    <LoadMoreShips/>
   </div>
 </template>
 
 <script>
-import StarShipDetail from '@/components/StarShipDetail'
+import LoadMoreShips from '@/components/LoadMoreShips'
 export default {
     layout: 'website',
     name: 'starships',
     components: {
-      StarShipDetail
+       LoadMoreShips,
+    },
+    mounted () {
+     this.scroll()
     },
     computed: {
       ships(){
         return this.$store.getters['ships/getShips']
       }
-    }   
+    }, 
+    methods: {
+        moreShips(){
+        return this.$store.dispatch('ships/loadMoreShips')
+      },
+      scroll() {
+      window.onscroll = () => {
+        let bottomOfWindow = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
+         if (bottomOfWindow) {
+           this.moreShips()
+           }
+        }
+      }
+    }
 }
 </script>
 

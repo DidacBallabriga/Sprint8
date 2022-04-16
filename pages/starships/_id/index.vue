@@ -1,10 +1,10 @@
 <template>
 <div class="container-fluid detailShip">
   <h1>{{$route.params.id}}</h1>
-  <div class="row" v-for="(ship, index) in ships.results" :key="index" v-if="$route.params.id === ship.name">
+  <div class="row" v-for="(ship, index) in ships" :key="index" v-if="$route.params.id === ship.name">
     <div class="image">
-      <img :src="'https://starwars-visualguide.com/assets/img/starships/'+ ship.url.replace(/\D+/g, '')+'.jpg'" alt="">
-    <p class="text">Here you can see all details about {{$route.params.id}} starship:</p>
+      <img :src="'https://starwars-visualguide.com/assets/img/starships/'+ ship.url.replace(/\D+/g, '')+'.jpg'" onerror="this.src='https://starwars-visualguide.com/assets/img/big-placeholder.jpg'" alt="">
+      <p class="text">Here you can see all details about {{$route.params.id}} starship:</p>
     </div>
        <div class="col-lg-6">
            <ul>

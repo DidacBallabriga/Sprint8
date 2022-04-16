@@ -3,7 +3,7 @@ export const state = () => ({
 
 })
 
-//Getters, normalmente se llaman desde computed en los componentes
+//Getters para consultas a las BBDD, normalmente se llaman desde computed en los componentes
 export const getters = {
 
 }
