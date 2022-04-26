@@ -5,6 +5,7 @@
       <button class="my-button"><NuxtLink active-class="active" class="nuxt-link-1 p-3" to="/home">ENTER</NuxtLink></button>
       <button class="my-button"><NuxtLink active-class="active" class="nuxt-link-1 p-3" to="/starships">STARSHIPS</NuxtLink></button>
     </div>
+    <h5>Create a local account to view the full website or use these credentials:<br><b>Email:</b> admin@nuxtjs.com <b>Password:</b> password </h5>
   </div>
 </template>
 
@@ -26,6 +27,11 @@ h1{
   margin: 2rem;
   text-align: center;
   color: rgb(255, 228, 0);
+}
+h5{
+  margin: 2rem;
+  text-align: center;
+  color:rgb(143, 140, 140);
 }
 .my-buttons{
   text-align: center;

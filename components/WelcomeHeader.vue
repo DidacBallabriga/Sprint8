@@ -13,9 +13,9 @@
             </b-nav-text>
           </b-navbar-nav>
           <b-navbar-nav>
-            <b-nav-item><NuxtLink to="/home">LOG IN</NuxtLink></b-nav-item>
+            <b-nav-item><NuxtLink to="/login">LOG IN</NuxtLink></b-nav-item>
             <span class="double-bar">//</span>
-            <b-nav-item><NuxtLink to="/starships">SING UP</NuxtLink></b-nav-item>
+            <b-nav-item><NuxtLink to="/registrer">SIGN UP</NuxtLink></b-nav-item>
           </b-navbar-nav>
         </b-collapse>
     </b-navbar>
