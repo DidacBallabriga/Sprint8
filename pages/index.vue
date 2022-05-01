@@ -13,7 +13,8 @@
 
 export default {
   name: 'IndexPage',
-  layout: 'welcome'
+  layout: 'welcome',
+  auth: false
 }
 </script>
 

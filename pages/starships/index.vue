@@ -15,11 +15,18 @@ import LoadMoreShips from '@/components/LoadMoreShips'
 export default {
     layout: 'website',
     name: 'starships',
+    auth: false,
     components: {
        LoadMoreShips,
     },
-    mounted () {
-     this.scroll()
+    beforeMount(){
+      if(localStorage.getItem("auth.user.auth")==null){
+        console.log("USER CAN NOT PASS");
+        this.$router.push('/login')
+      } else {
+        this.$auth.loggedIn
+        this.$router.push('/starships')
+      }
     },
     computed: {
       ships(){

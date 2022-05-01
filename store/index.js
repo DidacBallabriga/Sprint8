@@ -1,6 +1,7 @@
 //Almacenamiento central
 export const state = () => ({
-    users: [{email:"admin@nuxtjs.com", password:"password"}]
+    users: [{email:"admin@nuxtjs.com", password:"password"}],
+    authenticated: false
 })
 
 //Getters para consultas a las BBDD, normalmente se llaman desde computed en los componentes
@@ -10,6 +11,9 @@ export const getters = {
     },
     getNumberOfUsers(state){
         return state.users.length
+    },
+    getUserAuth(state){
+        return state.authenticated
     }
 }
 
@@ -19,7 +23,7 @@ export const actions = {
     async nuxtServerInit({dispatch}, context){
         await dispatch('ships/loadShips')
     },
-    loginUser({getters}, loginInfo){
+    loginUser({commit, getters}, loginInfo){
         console.log("REGISTERED USERS:");
         console.log(getters.getUsers);
         let userExist = false
@@ -30,13 +34,14 @@ export const actions = {
         }
         if(userExist===true){
             console.log("You are sign in " + loginInfo.email)
-            alert("You are sign in " + loginInfo.email)
+            alert("You are sign in " + loginInfo.email + " welcome")
+            commit('setAuthenticated')
+            this.$auth.$storage.setLocalStorage("user.auth", loginInfo)        
+            this.$router.push('/home')
         } else {
             alert("Email/Password combination was incorrect. Please try again.")
             console.log("Email/Password combination was incorrect. Please try again.");
         }
-
-
     },
     registrerUser({commit, getters}, registrerInfo){
         let userRegistred = false
@@ -49,13 +54,18 @@ export const actions = {
             commit('addUser', registrerInfo)
             alert("You are registred as " + registrerInfo.email);
             console.log("You are registred as " + registrerInfo.email);
+            this.$auth.$storage.setLocalStorage(state.users, registrerInfo)
+            this.$router.push('/login')
         } else {
             console.log("You are allready registred " + registrerInfo.email)
             alert("You are allready registred  " + registrerInfo.email)
+            this.$router.push('/login')
         }
-
         console.log("REGISTERED USERS:");
         console.log(getters.getUsers);
+    },
+    logout({commit}){
+        commit('setDesconection')
     }
 }
 
@@ -68,5 +78,11 @@ export const mutations = {
         for (let i=0; i<1; i++ ) {
             state.users.push(registrerInfo)
         }
+    },
+    setAuthenticated(state){
+        state.authenticated = true
+    },
+    setDesconection(state){
+        state.authenticated = false
     }
 }

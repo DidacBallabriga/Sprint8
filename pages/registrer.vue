@@ -10,6 +10,7 @@ import UserRegistrerForm from '@/components/UserRegistrerForm.vue'
 export default {
   name: 'registrer',
   layout: 'welcome',
+  auth: false,
   components: {
     UserRegistrerForm
   }

@@ -28,6 +28,13 @@
 export default {
     name: 'starshipDetail',
     layout: 'website',
+    auth: false,
+        beforeMount(){
+      if(localStorage.getItem("auth.user.auth")==null){
+        console.log("USER CAN NOT PASS");
+        this.$router.push('/login')
+      } 
+    },
     computed: {
       ships(){
         return this.$store.getters['ships/getShips']

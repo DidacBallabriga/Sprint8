@@ -3,23 +3,28 @@
     <b-navbar id="navbar" toggleable="md">
       <div class="myclass"></div>
         <b-navbar-brand class="d-md-none">
-          <Logo src="/" />
+          <Logo />
         </b-navbar-brand>
       <b-navbar-toggle target="collapse-area"></b-navbar-toggle>
         <b-collapse id="collapse-area" is-nav>
           <b-navbar-nav class="d-none d-md-block mx-auto">
             <b-nav-text>
-              <Logo href="/" />
+              <Logo />
             </b-nav-text>
           </b-navbar-nav>
+          <div v-if="this.isAutenticated==false">
+            <p>Registred as:<br>{{emailUser}}</p> 
+            <NuxtLink @click.native="logout" to="/">// LOG OUT</NuxtLink>
+          </div>
+          <div v-else>
           <b-navbar-nav>
             <b-nav-item><NuxtLink to="/login">LOG IN</NuxtLink></b-nav-item>
             <span class="double-bar">//</span>
             <b-nav-item><NuxtLink to="/registrer">SIGN UP</NuxtLink></b-nav-item>
           </b-navbar-nav>
+          </div>
         </b-collapse>
     </b-navbar>
-
   </div>
 </template>
 
@@ -27,8 +32,23 @@
 import Logo from './Logo.vue'
 export default {
   name: 'Header',
+  emailUser: "",
+  isAutenticated: true,
   components: {
     Logo
+  },
+  beforeMount(){
+     if(localStorage.getItem("auth.user.auth")!==null){
+        this.emailUser = JSON.parse(localStorage.getItem("auth.user.auth")).email
+        this.isAutenticated = false
+      }
+  },
+  methods: {
+    logout: function(){
+        window.localStorage.removeItem("auth.user.auth")
+        this.$store.dispatch('logout')
+        this.$router.push('/home')
+    }
   }
 }
 </script>
@@ -43,11 +63,7 @@ export default {
     font-weight: 500;
 }
 a, span{
-  color: #999;
-}
-a:hover{
-  color: #ccc;
-  text-decoration: none;
+  color: rgb(143, 140, 140);
 }
 @media (max-width: 767px){
   .double-bar{

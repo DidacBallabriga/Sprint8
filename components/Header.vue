@@ -12,9 +12,9 @@
               <Logo />
             </b-nav-text>
           </b-navbar-nav>
-          <div v-if="$auth.loggedIn">
-            {{$auth.user.email}}
-            <b-nav-item><NuxtLink to="#">LOG OUT</NuxtLink></b-nav-item>
+          <div v-if="this.isAutenticated==false">
+            <p>Registred as:<br>{{emailUser}}</p> 
+            <NuxtLink @click.native="logout" to="/">// LOG OUT</NuxtLink>
           </div>
           <div v-else>
           <b-navbar-nav>
@@ -36,8 +36,23 @@
 import Logo from './Logo.vue'
 export default {
   name: 'Header',
+  emailUser: "",
+  isAutenticated: true,
   components: {
     Logo
+  },
+  beforeMount(){
+     if(localStorage.getItem("auth.user.auth")!==null){
+        this.emailUser = JSON.parse(localStorage.getItem("auth.user.auth")).email
+        this.isAutenticated = false
+      }
+  },
+  methods: {
+    logout: function(){
+        window.localStorage.removeItem("auth.user.auth")
+        this.$store.dispatch('logout')
+        this.$router.push('/')
+    }
   }
 }
 </script>

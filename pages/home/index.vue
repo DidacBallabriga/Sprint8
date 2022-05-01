@@ -6,7 +6,8 @@
 <script>
 export default {
   layout: 'website',
-  name: 'home'
+  name: 'home',
+  auth: false
 }
 </script>
 
