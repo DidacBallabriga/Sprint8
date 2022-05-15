@@ -3,7 +3,8 @@ export const state = () => ({
     arrayShips: [],
     arrayUrlPilots: [],
     arrayPilots: [],
-    page: 2
+    page: 2,
+    contador: 0
 })
 
 //Actions
@@ -24,8 +25,10 @@ export const actions = {
     },
     //obtener lista pilotos
     async loadPilots({commit, getters}){
+        let pagina = getters.getNumber
+        if(pagina <5){
         let urlPilots = getters.getUrlPilots
-        for (var i=0; i<urlPilots.length; i++ ) {
+        for (var i=0; i<10; i++ ) {
             if(urlPilots[i].length===0){
                 commit('addPilot', 0) 
             } else {
@@ -39,6 +42,58 @@ export const actions = {
             }
           }
         }
+        },
+        async loadMorePilots({commit, getters}){
+            let pagina = getters.getNumber
+        if(pagina ===3){
+        let urlPilots = getters.getUrlPilots
+        for (var i=10; i<20; i++ ) {
+            if(urlPilots[i].length===0){
+                commit('addPilot', 0) 
+            } else {
+                var arrayPilotsToPush = []
+                let urlaxios = urlPilots[i]
+                for(var z=0; z<urlPilots[i].length; z++ ){
+                var { data } = await this.$axios.get(urlaxios[z])
+                arrayPilotsToPush.push(data)
+                } 
+                commit('addPilot', arrayPilotsToPush)
+            }
+          }
+        }
+        if(pagina ===4){
+            let urlPilots = getters.getUrlPilots
+            for (var i=20; i<30; i++ ) {
+                if(urlPilots[i].length===0){
+                    commit('addPilot', 0) 
+                } else {
+                    var arrayPilotsToPush = []
+                    let urlaxios = urlPilots[i]
+                    for(var z=0; z<urlPilots[i].length; z++ ){
+                    var { data } = await this.$axios.get(urlaxios[z])
+                    arrayPilotsToPush.push(data)
+                    } 
+                    commit('addPilot', arrayPilotsToPush)
+                }
+              }
+            }
+            if(pagina ===5){
+                let urlPilots = getters.getUrlPilots
+                for (var i=30; i<36; i++ ) {
+                    if(urlPilots[i].length===0){
+                        commit('addPilot', 0) 
+                    } else {
+                        var arrayPilotsToPush = []
+                        let urlaxios = urlPilots[i]
+                        for(var z=0; z<urlPilots[i].length; z++ ){
+                        var { data } = await this.$axios.get(urlaxios[z])
+                        arrayPilotsToPush.push(data)
+                        } 
+                        commit('addPilot', arrayPilotsToPush)
+                    }
+                  }
+                }    
+            }
 }
 
 //Getters
@@ -55,6 +110,9 @@ export const getters = {
     getPilots(state){
         return state.arrayPilots
     },
+    getContador(state){
+        return state.contador
+    }
 }
 
 //Mutaciones
@@ -79,4 +137,7 @@ export const mutations = {
     incrementPage (state) {
         state.page++
       },
+    incrementContador (state){
+        state.contador = contador++
+    }
 }

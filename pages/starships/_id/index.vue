@@ -29,7 +29,7 @@
 </div>
 </template>
 
-<script>
+<script scoped>
 import Pilots from "@/components/Pilots.vue"
 export default {
     components: [

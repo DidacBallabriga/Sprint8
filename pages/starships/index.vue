@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script>
+<script scoped>
 import LoadMoreShips from '@/components/LoadMoreShips'
 export default {
     layout: 'website',
@@ -28,23 +28,26 @@ export default {
         this.$router.push('/starships')
       }
     },
-    computed: {
-      ships(){
-        return this.$store.getters['ships/getShips']
-      },
-    scroll() {
+    created() {  
       window.onscroll = () => {
         let bottomOfWindow = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
          if (bottomOfWindow===true) {
            this.moreShips()
            }
         }
+    },
+    computed: {
+      ships(){
+        return this.$store.getters['ships/getShips']
       }
     }, 
     methods: {
       moreShips(){
-      return this.$store.dispatch('ships/loadMoreShips')
+    this.$store.dispatch('ships/loadMoreShips')
       }
+    },
+    updated(){
+       this.$store.dispatch('ships/loadMorePilots')
     }
 }
 </script>

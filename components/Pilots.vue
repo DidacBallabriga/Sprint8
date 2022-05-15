@@ -43,7 +43,6 @@ export default {
   .detailShip {
     text-align: left;
   }
-
 }
 li {
   list-style:none;

@@ -12,7 +12,7 @@
               <Logo />
             </b-nav-text>
           </b-navbar-nav>
-          <div v-if="this.isAutenticated==false">
+          <div v-if="this.isAutenticated===false">
             <p>Registred as:<br>{{emailUser}}</p> 
             <NuxtLink @click.native="logout" to="/">// LOG OUT</NuxtLink>
           </div>
@@ -31,7 +31,7 @@
 <script>
 import Logo from './Logo.vue'
 export default {
-  name: 'Header',
+  name: 'WelcomeHeader',
   emailUser: "",
   isAutenticated: true,
   components: {
