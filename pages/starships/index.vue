@@ -31,19 +31,19 @@ export default {
     computed: {
       ships(){
         return this.$store.getters['ships/getShips']
-      }
-    }, 
-    methods: {
-        moreShips(){
-        return this.$store.dispatch('ships/loadMoreShips')
       },
-      scroll() {
+    scroll() {
       window.onscroll = () => {
         let bottomOfWindow = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
-         if (bottomOfWindow) {
+         if (bottomOfWindow===true) {
            this.moreShips()
            }
         }
+      }
+    }, 
+    methods: {
+      moreShips(){
+      return this.$store.dispatch('ships/loadMoreShips')
       }
     }
 }

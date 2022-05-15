@@ -4,7 +4,7 @@
   <div class="row" v-for="(ship, index) in ships" :key="index" v-if="$route.params.id === ship.name">
     <div class="image">
       <img :src="'https://starwars-visualguide.com/assets/img/starships/'+ ship.url.replace(/\D+/g, '')+'.jpg'" onerror="this.src='https://starwars-visualguide.com/assets/img/big-placeholder.jpg'" alt="">
-      <p class="text">Here you can see all details about {{$route.params.id}} starship:</p>
+      <p class="text ml-5">Here you can see all details about {{$route.params.id}} starship:</p>
     </div>
        <div class="col-lg-6">
            <ul>
@@ -20,12 +20,21 @@
                <li>Crew: {{ship.crew}} </li>
             </ul> 
         </div>
+          <div class="container-fluid">
+           <h1>PILOTS</h1>
+          <Pilots :propId="index"/> 
   </div>
+  </div>
+
 </div>
 </template>
 
 <script>
+import Pilots from "@/components/Pilots.vue"
 export default {
+    components: [
+      Pilots
+    ],
     name: 'starshipDetail',
     layout: 'website',
     auth: false,

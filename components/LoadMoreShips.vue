@@ -1,7 +1,9 @@
 <template>
-    <div>
+    <div class="infinite-container">
       <div><span>.</span></div>
+      <client-only>
       <InfiniteLoading v-if="ships!== 5" spinner="bubbles"></InfiniteLoading>
+      </client-only>
     </div>
 </template>
 

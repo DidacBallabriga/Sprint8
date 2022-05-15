@@ -20,8 +20,9 @@ export const getters = {
 //Acciones, para llamar a las mutaciones
 export const actions = {
     //esta función se ejecuta al iniciar la app
-    async nuxtServerInit({dispatch}, context){
+    async nuxtServerInit({dispatch}){
         await dispatch('ships/loadShips')
+        await dispatch('ships/loadPilots')
     },
     loginUser({commit, getters}, loginInfo){
         console.log("REGISTERED USERS:");
