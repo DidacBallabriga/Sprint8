@@ -33,6 +33,7 @@
 
 <script>
   export default {
+    name: 'UserRegistrerForm',
     data() {
       return {
         errors: [],

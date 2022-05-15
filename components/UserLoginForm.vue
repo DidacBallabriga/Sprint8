@@ -27,6 +27,7 @@
 
 <script>
   export default {
+    name: 'UserLoginForm',
     data() {
       return {
         loginInfo: {

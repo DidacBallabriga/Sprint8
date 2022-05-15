@@ -15,6 +15,7 @@
 
 <script>
   export default {
+    name: 'UserAuthForm',
     data() {
       return {
         loginInfo: {
